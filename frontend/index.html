@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-book-open"></i>
+                <span>Library Management</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#dashboard" class="nav-link active" data-page="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="#books" class="nav-link" data-page="books">
+                    <i class="fas fa-book"></i> Books
+                </a>
+                <a href="#members" class="nav-link" data-page="members">
+                    <i class="fas fa-users"></i> Members
+                </a>
+                <a href="#transactions" class="nav-link" data-page="transactions">
+                    <i class="fas fa-exchange-alt"></i> Transactions
+                </a>
+                <a href="#reports" class="nav-link" data-page="reports">
+                    <i class="fas fa-chart-bar"></i> Reports
+                </a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Dashboard Page -->
+        <div id="dashboard" class="page active">
+            <div class="page-header">
+                <h1><i class="fas fa-home"></i> Dashboard</h1>
+                <p>Welcome to the Library Management System</p>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalBooks">0</h3>
+                        <p>Total Books</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="availableBooks">0</h3>
+                        <p>Available Books</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalMembers">0</h3>
+                        <p>Total Members</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="overdueBooks">0</h3>
+                        <p>Overdue Books</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-grid">
+                    <button class="action-btn" data-action="add-book">
+                        <i class="fas fa-plus"></i>
+                        <span>Add New Book</span>
+                    </button>
+                    <button class="action-btn" data-action="add-member">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add New Member</span>
+                    </button>
+                    <button class="action-btn" data-action="borrow-book">
+                        <i class="fas fa-hand-holding"></i>
+                        <span>Borrow Book</span>
+                    </button>
+                    <button class="action-btn" data-action="return-book">
+                        <i class="fas fa-undo"></i>
+                        <span>Return Book</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="recentActivity">
+                    <div class="activity-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>System started - Welcome to Library Management System</span>
+                        <time id="systemTime"></time>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Books Page -->
+        <div id="books" class="page">
+            <div class="page-header">
+                <h1><i class="fas fa-book"></i> Books Management</h1>
+                <button class="btn btn-primary" id="addBookBtn">
+                    <i class="fas fa-plus"></i> Add New Book
+                </button>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" id="bookSearchInput" placeholder="Search books by title or author...">
+                    <button class="btn btn-secondary" id="searchBooksBtn">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+                <div class="filter-container">
+                    <select id="bookFilter">
+                        <option value="all">All Books</option>
+                        <option value="available">Available Only</option>
+                        <option value="borrowed">Borrowed Only</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Books Table -->
+            <div class="table-container">
+                <table class="data-table" id="booksTable">
+                    <thead>
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="booksTableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Members Page -->
+        <div id="members" class="page">
+            <div class="page-header">
+                <h1><i class="fas fa-users"></i> Members Management</h1>
+                <button class="btn btn-primary" id="addMemberBtn">
+                    <i class="fas fa-user-plus"></i> Add New Member
+                </button>
+            </div>
+
+            <!-- Members Table -->
+            <div class="table-container">
+                <table class="data-table" id="membersTable">
+                    <thead>
+                        <tr>
+                            <th>Member ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Join Date</th>
+                            <th>Books Borrowed</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="membersTableBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Transactions Page -->
+        <div id="transactions" class="page">
+            <div class="page-header">
+                <h1><i class="fas fa-exchange-alt"></i> Borrow & Return</h1>
+            </div>
+
+            <div class="transaction-section">
+                <!-- Borrow Book Form -->
+                <div class="transaction-card">
+                    <h2><i class="fas fa-hand-holding"></i> Borrow Book</h2>
+                    <form id="borrowForm" class="form">
+                        <div class="form-group">
+                            <label for="borrowMemberId">Member ID:</label>
+                            <input type="text" id="borrowMemberId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="borrowBookId">Book ID:</label>
+                            <input type="text" id="borrowBookId" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-hand-holding"></i> Borrow Book
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Return Book Form -->
+                <div class="transaction-card">
+                    <h2><i class="fas fa-undo"></i> Return Book</h2>
+                    <form id="returnForm" class="form">
+                        <div class="form-group">
+                            <label for="returnMemberId">Member ID:</label>
+                            <input type="text" id="returnMemberId" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="returnBookId">Book ID:</label>
+                            <input type="text" id="returnBookId" required>
+                        </div>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-undo"></i> Return Book
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Current Borrowings -->
+            <div class="current-borrowings">
+                <h2>Current Borrowings</h2>
+                <div class="table-container">
+                    <table class="data-table" id="borrowingsTable">
+                        <thead>
+                            <tr>
+                                <th>Book Title</th>
+                                <th>Borrowed By</th>
+                                <th>Borrow Date</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="borrowingsTableBody">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Page -->
+        <div id="reports" class="page">
+            <div class="page-header">
+                <h1><i class="fas fa-chart-bar"></i> Reports & Statistics</h1>
+            </div>
+
+            <!-- Detailed Statistics -->
+            <div class="reports-grid">
+                <div class="report-card">
+                    <h3>Library Overview</h3>
+                    <div class="report-stats">
+                        <div class="report-item">
+                            <span class="label">Total Books:</span>
+                            <span class="value" id="reportTotalBooks">0</span>
+                        </div>
+                        <div class="report-item">
+                            <span class="label">Available Books:</span>
+                            <span class="value" id="reportAvailableBooks">0</span>
+                        </div>
+                        <div class="report-item">
+                            <span class="label">Borrowed Books:</span>
+                            <span class="value" id="reportBorrowedBooks">0</span>
+                        </div>
+                        <div class="report-item">
+                            <span class="label">Total Members:</span>
+                            <span class="value" id="reportTotalMembers">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-card">
+                    <h3>Overdue Books</h3>
+                    <div id="overdueList" class="overdue-list">
+                        <!-- Overdue books will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    
+    <!-- Add Book Modal -->
+    <div id="addBookModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> Add New Book</h2>
+                <span class="close" data-modal="addBookModal">&times;</span>
+            </div>
+            <form id="addBookForm" class="form">
+                <div class="form-group">
+                    <label for="bookId">Book ID:</label>
+                    <input type="text" id="bookId" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookTitle">Title:</label>
+                    <input type="text" id="bookTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">Author:</label>
+                    <input type="text" id="bookAuthor" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookIsbn">ISBN:</label>
+                    <input type="text" id="bookIsbn" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="addBookModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div id="addMemberModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Add New Member</h2>
+                <span class="close" data-modal="addMemberModal">&times;</span>
+            </div>
+            <form id="addMemberForm" class="form">
+                <div class="form-group">
+                    <label for="memberId">Member ID:</label>
+                    <input type="text" id="memberId" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberName">Name:</label>
+                    <input type="text" id="memberName" required>
+                </div>
+                <div class="form-group">
+                    <label for="memberEmail">Email:</label>
+                    <input type="email" id="memberEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="maxBooks">Maximum Books Allowed:</label>
+                    <input type="number" id="maxBooks" value="5" min="1" max="10">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" data-modal="addMemberModal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- JavaScript -->
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
