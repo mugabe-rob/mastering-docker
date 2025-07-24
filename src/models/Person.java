@@ -9,6 +9,7 @@ public abstract class Person {
     protected String name;
     protected String email;
     
+    
     public Person(String id, String name, String email) {
         this.id = id;
         this.name = name;
@@ -16,7 +17,7 @@ public abstract class Person {
     }
     
     // Encapsulation with getters and setters
-    public String getId() {
+    public String getId(){
         return id;
     }
     

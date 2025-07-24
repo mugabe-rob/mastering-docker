@@ -4,3 +4,13 @@ B003|1984|George Orwell|978-0-452-28423-4|true|||
 B004|Pride and Prejudice|Jane Austen|978-0-14-143951-8|true|||
 B005|The Catcher in the Rye|J.D. Salinger|978-0-316-76948-0|true|||
 B006|Atomic Habits|James Clear|978-12-316-76948-0|true|||
+B007|Moby Dick|Herman Melville|978-0-14-243724-7|true|||
+B008|The Hobbit|J.R.R. Tolkien|978-0-618-00221-3|true|||
+B009|War and Peace|Leo Tolstoy|978-0-14-303999-0|true|||
+B010|The Alchemist|Paulo Coelho|978-0-06-112241-5|true|||
+B011|Brave New World|Aldous Huxley|978-0-06-085052-4|true|||
+B012|Crime and Punishment|Fyodor Dostoevsky|978-0-14-305814-4|true|||
+B013|The Lord of the Rings|J.R.R. Tolkien|978-0-618-00222-0|true|||
+B014|Jane Eyre|Charlotte Brontë|978-0-14-243720-9|true|||
+B015|The Kite Runner|Khaled Hosseini|978-1-59448-000-3|true|||
+B016|The Book Thief|Markus Zusak|978-0-375-84220-7|true|||

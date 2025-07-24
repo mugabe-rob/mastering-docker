@@ -33,3 +33,4 @@ public class LocalDateAdapter {
         return formatter.format(LocalDate.now());
     }
 }
+

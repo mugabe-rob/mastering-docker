@@ -12,6 +12,8 @@ public class Librarian extends Person {
     private String department;
     private double salary;
     
+
+    
     // Constructor
     public Librarian(String id, String name, String email, String employeeId, String department) {
         super(id, name, email);
@@ -35,6 +37,7 @@ public class Librarian extends Person {
     public String getEmployeeId() {
         return employeeId;
     }
+
     
     public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
@@ -83,3 +86,4 @@ public class Librarian extends Person {
                department.equalsIgnoreCase("Administration");
     }
 }
+
